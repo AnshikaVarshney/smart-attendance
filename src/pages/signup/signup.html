@@ -1,0 +1,38 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Reset Password</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+	<div class="logo">
+		<p style="padding: 0px 20px 0px 20px; color: aliceblue"><b>SMART Attendance</b> required the user to be a staff of Mutiara Smart Computing Sdn Bhd since the user need to input
+			their Staff ID and Password to log into the app and use the attendance function.<br><br>If you do not know your Staff
+			ID and Password, please contact the person-in-charge in order to get your Staff ID and Password.
+		</p>
+	</div>
+	<div>
+		<div *ngIf="!hideForm">
+			<form [formGroup]="form" (ngSubmit)="saveEntry()">
+				<ion-list>
+					<ion-item style="background-color: rgba(0, 0, 0, 0.5);">
+						<ion-label floating>Staff ID</ion-label>
+						<ion-input [(ngModel)]="resetStaff_id" name="username" type="text" formControlName="staff_id" style="color: aliceblue">
+						</ion-input>
+					</ion-item>
+					<br>
+				</ion-list>
+				<ion-row>
+					<ion-col>
+						<button ion-button text-center block [disabled]="!form.valid">Reset My Password</button>
+					</ion-col>
+				</ion-row>
+			</form>
+		</div>
+	</div>
+	<div>
+		<p style="padding: 0px 20px 0px 20px; text-align: center; color: aliceblue">
+			To reset your password, please fill in the form above and click on the<br>"RESET MY PASSWORD" button.
+		</p>
+	</div>
+</ion-content>

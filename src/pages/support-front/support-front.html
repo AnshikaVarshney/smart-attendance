@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Request Device Reset</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+    <div>
+        <p style="padding: 0px 20px 0px 20px; text-align: center; color: aliceblue">
+            If you have changed your device and cannot login the mobile app, please request for device id reset to the administrator
+            using the form given below.
+        </p>
+    </div>
+    <div>
+        <div *ngIf="!hideForm">
+            <form [formGroup]="form" (ngSubmit)="saveEntry()">
+                <ion-list>
+                    <ion-item style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+                        <ion-label fixed>Staff ID</ion-label>
+                        <ion-input [(ngModel)]="user.staff_id" name="staff_id" formControlName="staff_id"></ion-input>
+                    </ion-item>
+                    <ion-item style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+                        <ion-label fixed>Password</ion-label>
+                        <ion-input [(ngModel)]="user.password" type="password" name="password" formControlName="password"></ion-input>
+                    </ion-item>
+                    <ion-item style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+                        <ion-label fixed>Email</ion-label>
+                        <ion-input [(ngModel)]="user.email" type="email" placeholder="Eg: youremail@website.com" name="email" formControlName="email"></ion-input>
+                    </ion-item>
+                    <br>
+                </ion-list>
+                <ion-row>
+                    <ion-col>
+                        <button ion-button text-center block [disabled]="!form.valid">Request</button>
+                    </ion-col>
+                </ion-row>
+            </form>
+        </div>
+    </div>
+    <div>
+        <p style="padding: 0px 20px 0px 20px; text-align: center; color: aliceblue">
+            Note: If your inputs is not the same with the one in the database, the request will be ignored.
+        </p>
+    </div>
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Login</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (tap)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+	<div class="logo">
+		<img src="assets/img/appicon.png" alt="Mutiara Smart logo">
+	</div>
+	<div>
+		<div *ngIf="!hideForm">
+			<form [formGroup]="form" (ngSubmit)="saveEntry()">
+				<ion-list>
+					<ion-item style="background-color: rgba(0, 0, 0, 0.5);">
+						<ion-label fixed>Staff ID</ion-label>
+						<ion-input [(ngModel)]="loginStaff_id" name="username" type="text" formControlName="staff_id" style="color: aliceblue">
+						</ion-input>
+					</ion-item>
+					<ion-item style="background-color: rgba(0, 0, 0, 0.5);">
+						<ion-label fixed>Password</ion-label>
+						<ion-input [(ngModel)]="loginPassword" name="password" type="password" formControlName="password" style="color: aliceblue">
+						</ion-input>
+					</ion-item>
+					<br>
+				</ion-list>
+				<ion-row>
+					<ion-col>
+						<button ion-button text-center block [disabled]="!form.valid">Login</button>
+					</ion-col>
+				</ion-row>
+			</form>
+		</div>
+	</div>
+	<ion-row>
+		<ion-col text-center>
+			<button ion-button class="forgot-btn" (click)="click()" color="light" clear><u>Forgot Password / Reset Password</u></button>
+		</ion-col>
+	</ion-row>
+</ion-content>

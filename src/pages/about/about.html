@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>About</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+  <div class="about-header">
+    <img src="assets/img/appicon.png" alt="ionic logo">
+  </div>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-4>
+        <ion-item-divider style="color: orange; background-color: rgba(0, 0, 0, 0.9);">
+          App Name
+        </ion-item-divider>
+      </ion-col>
+      <ion-col>
+        <ion-item-divider style="color: white; background-color: rgba(0, 0, 0, 0.9);">
+          {{aboutName}}
+        </ion-item-divider>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>
+        <ion-item-divider style="color: orange; background-color: rgba(0, 0, 0, 0.9);">
+          App Version
+        </ion-item-divider>
+      </ion-col>
+      <ion-col>
+        <ion-item-divider style="color: white; background-color: rgba(0, 0, 0, 0.9);">
+          {{aboutVer}}
+        </ion-item-divider>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item-divider text-center style="color: orange; background-color: rgba(0, 0, 0, 0.9);">
+    Description
+  </ion-item-divider>
+  <ion-row>
+    <ion-col text-justify style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);" padding>
+      <b>SMART Attendance</b> is an app by Mutiara Smart Computing Sdn Bhd for recording the attendance of its staffs <b>whenever</b>      and <b>wherever</b>. It is an extension for the <b>Smart Leave and Attendance Management System (SMARTLA)</b>.<br><br>      This app is able to record the attendance of a staff. The recorded attendance will be based on the time of their arrival
+      and also their location. Hence, the company will be able to monitor the whereabouts of their staffs. The attendance
+      record will be also made available in the SMARTLA.<br><br> This app required the user to be a staff of Mutiara Smart
+      Computing Sdn Bhd since the user need to input their Staff ID and Password to log into the app and use the attendance
+      function.
+    </ion-col>
+  </ion-row>
+</ion-content>

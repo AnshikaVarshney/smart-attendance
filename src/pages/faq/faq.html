@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+  <ion-row>
+    <ion-col text-center style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);" padding>
+      Please click on the questions below to view their respective answers.
+    </ion-col>
+  </ion-row>
+  <ion-grid>
+    <ion-row style="background-color: rgba(243, 156, 18, 1);" (click)="onButtonClick1()">
+      <ion-col style="text-align:justify; color: black;">
+        <u>Question 1:</u><br> What to do if when I click on the "Punch In" or "Punch Out" button, my location cannot be detected?</ion-col>
+    </ion-row>
+    <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);" *ngIf="buttonClicked1">
+      <ion-col style="text-align:justify;">
+        <u>Answer: </u>
+        <br>This happens due to the hardware problem in the device. There are several workaround for it.<br><br>
+        <ion-row style="color: black; background-color: rgba(243, 156, 18, 1);" (click)="onButtonClick11()">
+          <ion-col text-center>
+            <u>Method 1</u>
+          </ion-col>
+        </ion-row>
+        <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);" *ngIf="buttonClicked11">
+          - Switch off your GPS, let the app switch it on when detecting your location.
+        </ion-row>
+        <br>
+        <ion-row style="color: black; background-color: rgba(243, 156, 18, 1);" (click)="onButtonClick12()">
+          <ion-col text-center>
+            <u>Method 2</u>
+          </ion-col>
+        </ion-row>
+        <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);" *ngIf="buttonClicked12">
+          - Reboot your phone.
+        </ion-row>
+        <br>
+        <ion-row style="color: black; background-color: rgba(243, 156, 18, 1);" (click)="onButtonClick13()">
+          <ion-col text-center>
+            <u>Method 3</u>
+          </ion-col>
+        </ion-row>
+        <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);" *ngIf="buttonClicked13">
+          - Uninstall the app, then reinstall the app.
+        </ion-row>
+        <br>If the problem persists, please contact administrator by using the Support Form.</ion-col>
+    </ion-row>
+    <br/>
+    <ion-row style="background-color: rgba(243, 156, 18, 1);" (click)="onButtonClick2()">
+      <ion-col style="text-align:justify; color: black;">
+        <u>Question 2:</u><br> Will there be any improvement to be made on this app?</ion-col>
+    </ion-row>
+    <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);" *ngIf="buttonClicked2">
+      <ion-col style="text-align:justify;">
+        <u>Answer: </u><br>Yes. The app will be improved and enhanced to add more functionality and features. Any updates will be notified via Aptoide App Store.</ion-col>
+    </ion-row>
+    <br/>
+    <ion-row style="background-color: rgba(243, 156, 18, 1);" (click)="onButtonClick3()">
+      <ion-col style="text-align:justify; color: black;">
+        <u>Question 3:</u><br> Will there be an iOS version of this app?</ion-col>
+    </ion-row>
+    <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);" *ngIf="buttonClicked3">
+      <ion-col style="text-align:justify;">
+        <u>Answer: </u><br>Yes. But not now since there are no suitable equipments and devices to build the iOS app.</ion-col>
+    </ion-row>
+    <br/>
+  </ion-grid>
+</ion-content>

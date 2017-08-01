@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ pageTitle }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+  <ion-grid>
+    <ion-row style="background-color: rgba(243, 156, 18, 0.7);">
+      <ion-col style="color: aliceblue;">Date and Time</ion-col>
+    </ion-row>
+    <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5); font-size: 1.3em">
+      <ion-col>{{attendanceDateTime}}</ion-col>
+    </ion-row>
+    <ion-row style="background-color: rgba(243, 156, 18, 0.7);">
+      <ion-col style="color: aliceblue;">Latitude</ion-col>
+    </ion-row>
+    <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5); font-size: 1.3em">
+      <ion-col>{{attendanceLat}}</ion-col>
+    </ion-row>
+    <ion-row style="background-color: rgba(243, 156, 18, 0.7);">
+      <ion-col style="color: aliceblue; opacity: 1;">Longitude</ion-col>
+    </ion-row>
+    <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5); font-size: 1.3em">
+      <ion-col>{{attendanceLon}}</ion-col>
+    </ion-row>
+    <ion-row style="background-color: rgba(243, 156, 18, 0.7);">
+      <ion-col style="color: aliceblue;">Location</ion-col>
+    </ion-row>
+    <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5); font-size: 1.3em">
+      <ion-col>{{attendanceLoc}}</ion-col>
+    </ion-row>
+    <ion-row style="background-color: rgba(243, 156, 18, 0.7);">
+      <ion-col style="color: aliceblue;">Remarks</ion-col>
+    </ion-row>
+    <ion-row style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5); font-size: 1.3em">
+      <ion-col>{{attendanceRemarks}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

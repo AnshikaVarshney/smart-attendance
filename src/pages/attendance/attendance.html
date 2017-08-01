@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Attendance</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+  <br>
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button (click)="click()" block outline strong>My Attendance&nbsp;&nbsp;&nbsp;<ion-icon name="document"></ion-icon></button>
+    </ion-col>
+  </ion-row>
+  <br>
+  <ion-list-header style="font-size: 1.2em; font-weight: thin; color: black; background-color: #f39c12;" text-center>Record Attendance</ion-list-header>
+  <div *ngIf="!hideForm">
+    <form [formGroup]="form">
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button full strong (tap)="geolocateOut()" color="danger" round [disabled]="!outisenabled">Punch Out&nbsp;&nbsp;&nbsp;<ion-icon name="log-out" style="color: aliceblue"></ion-icon></button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button full strong solid (tap)="geolocateIn()" color="secondary" round [disabled]="!inisenabled">Punch In&nbsp;&nbsp;&nbsp;<ion-icon name="log-in" style="color: aliceblue"></ion-icon></button>
+        </ion-col>
+      </ion-row>
+      <ion-list>
+        <ion-item style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+          <ion-label stacked>Availability</ion-label>
+          <ion-select interface="popover" [(ngModel)]="attendance.availability" name="availability" formControlName="availability"
+            okText="Okay" cancelText="Dismiss" required>
+            <ion-option value="">None</ion-option>
+            <ion-option value="outstation">Out Station</ion-option>
+            <ion-option value="onsite">In Company</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </form>
+  </div>
+  <ion-list-header style="font-size: 1.2em; font-weight: thin; color: black; background-color: #f39c12;" text-center no-margin
+    no-padding>My Current Attendance</ion-list-header>
+  <div *ngIf="attendance.statuscolor == ''">
+    <ion-grid align="left" style="color: white; background-color: rgba(0, 0, 0, 0.9);">
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Date</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.date}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Time</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.time}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Location</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.location}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Status</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.status}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="attendance.statuscolor == 'red'">
+    <ion-grid align="left" style="color: white; background-color: rgba(0, 0, 0, 0.5);">
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Date</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.date}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Time</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.time}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Location</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.location}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Status</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8 style="color: red">{{attendance.status}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="attendance.statuscolor == 'green'">
+    <ion-grid align="left" style="color: white; background-color: rgba(0, 0, 0, 0.5);">
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Date</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.date}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Time</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.time}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Location</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8>{{attendance.location}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3 style="color: #f39c12">&nbsp;&nbsp;Status</ion-col>
+        <ion-col style="color: #f39c12">:</ion-col>
+        <ion-col col-8 style="color: green">{{attendance.status}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-item-divider color="theme" text-center no-margin no-padding></ion-item-divider>
+</ion-content>

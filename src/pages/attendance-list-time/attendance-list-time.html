@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ selectedDate | date: 'fullDate' }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+  <ion-list>
+    <ion-item *ngFor="let item of items" style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+      <h6 style="color: #f39c12;">PUNCH {{ item.punch_type.toUpperCase() }}</h6><h6> at {{ item.punch_time | date: 'hh:mm:ss a' }}</h6>
+      <button ion-button item-right (click)="viewEntry({ record: item })">View</button>
+      <button ion-button item-right (click)="viewMap({ record: item })">Map</button>
+    </ion-item>
+    <br>
+  </ion-list>
+</ion-content>

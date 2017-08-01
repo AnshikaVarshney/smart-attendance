@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Support</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+    <div>
+        <p style="padding: 0px 20px 0px 20px; text-align: center; color: aliceblue">
+            If you encountered any problem while using this mobile app, please contact the administrator using the form given below.
+        </p>
+    </div>
+    <ion-list>
+        <ion-item style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+            <ion-label stacked>Select a category</ion-label>
+            <ion-select interface="popover" [(ngModel)]="category" name="category" okText="Okay" cancelText="Dismiss" required>
+              <ion-option value="">Please choose...</ion-option>
+              <ion-option value="Comment">Comment</ion-option>
+              <ion-option value="Complaint">Complaint</ion-option>
+              <ion-option value="Suggestion">Suggestion</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+            <ion-label stacked>Message</ion-label>
+            <ion-textarea [(ngModel)]="message" rows="10" placeholder="Your message..."></ion-textarea>
+        </ion-item>
+        <br>
+    </ion-list>
+    <div padding>
+        <button ion-button item-right (click)="send(category, message)" block>Send</button>
+    </div>
+    <div>
+        <p style="padding: 0px 20px 0px 20px; text-align: center; color: aliceblue">
+            To send a message to the administrator, please fill in the form above and click on the "SEND" button.
+        </p>
+    </div>
+</ion-content>

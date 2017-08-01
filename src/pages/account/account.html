@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>My Account</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+  <div class="about-header">
+    <img src="assets/img/appicon.png" alt="ionic logo">
+  </div>
+  <div padding class="about-info">
+    <ion-grid align="left" style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+      <ion-row>
+        <ion-col col-3>Staff ID</ion-col>
+        <ion-col>:</ion-col>
+        <ion-col col-8>{{staff.staff_id}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3>Name</ion-col>
+        <ion-col>:</ion-col>
+        <ion-col col-8>{{staff.name}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3>Email</ion-col>
+        <ion-col>:</ion-col>
+        <ion-col col-8>{{staff.email}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button (click)="click()">Update Password</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

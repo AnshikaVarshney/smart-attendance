@@ -1,0 +1,50 @@
+<ion-header no-border>
+  <ion-navbar>
+    <ion-buttons end *ngIf="showSkip">
+      <button ion-button (click)="startApp()" color="theme">Skip</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager>
+
+    <ion-slide style="background-color:white;">
+      <img src="assets/img/msa-slidebox-img-1.png" class="slide-image" />
+      <h2 class="slide-title">
+        Welcome to <b>SMART Attendance</b>
+      </h2>
+      <p>
+        The <b>attendance app</b> is an app by Mutiara Smart Computing Sdn Bhd for recording the attendance of its staffs
+        <b>whenever</b> and <b>whereever</b>. It is an extension for the <b>Smart Leave and Attendance Management System (SMARTLA)</b>.
+      </p>
+    </ion-slide>
+
+    <ion-slide style="background-color:white;">
+      <img src="assets/img/msa-slidebox-img-1.png" class="slide-image" />
+      <h2 class="slide-title">Functions</h2>
+      <p><b>SMART Attendance</b> is able to record the attendance of a staff. The recorded attendance will be based on the time
+        of their arrival and also their location. Hence, the company will be able to monitor the whereabout of their staffs.
+        The attendance record will be also made available in the SMARTLA.
+      </p>
+    </ion-slide>
+
+    <ion-slide style="background-color:white;">
+      <img src="assets/img/msa-slidebox-img-1.png" class="slide-image" />
+      <h2 class="slide-title">Account</h2>
+      <p><b>SMART Attendance</b> required the user to be a staff of Mutiara Smart Computing Sdn Bhd since the user need to input
+        their Staff ID and Password to log into the app and use the attendance function.
+      </p>
+    </ion-slide>
+
+    <ion-slide style="background-color:white;">
+      <img src="assets/img/msa-slidebox-img-1.png" class="slide-image" />
+      <h2 class="slide-title">Enter Now?</h2>
+      <button ion-button icon-right large clear (click)="startApp()">
+        Continue
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>
