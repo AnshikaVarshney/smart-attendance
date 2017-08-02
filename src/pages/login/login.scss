@@ -17,6 +17,7 @@ page-user {
   }
 
   .forgot-btn {
+<<<<<<< HEAD
     font-size: 0.8em;
   }
 
@@ -3110,3 +3111,44 @@ page-user {
     transform: matrix3d(1, 0, 0, 0, 0.839, 1, 0, 0, 0, 0, 1, 0, 500, 0, 0, 1);
   }
 }
+=======
+       font-size: 0.8em;
+  }
+
+  .reset-btn {
+       font-size: 0.8em;
+  }
+
+  .loader {
+    position: absolute;
+    top: 15%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #f4f4f4;
+    animation: 3s pulse infinite;
+  }
+}
+
+  @keyframes pulse {
+    0% {
+      height: 0px;
+      width: 0px;
+      border-width: 0px;
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      height: 130px;
+      width: 130px;
+      border-width: 2px;
+      opacity: 0;
+    }
+    100%{
+      opacity: 0;
+    }
+  }
+>>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8

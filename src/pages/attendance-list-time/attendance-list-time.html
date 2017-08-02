@@ -6,6 +6,7 @@
   </ion-navbar>
 </ion-header>
 
+<<<<<<< HEAD
 <ion-content no-padding style="background-color: rgba(255, 255, 255, 1);">
   <ion-refresher (ionRefresh)="doRefresh($event)" style="background-color: rgba(255, 255, 255, 1);">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
@@ -18,4 +19,15 @@
       <button ion-button item-right (click)="viewMap({ record: item })">Map</button>
     </ion-item>
   </ion-card>
+=======
+<ion-content no-padding style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
+  <ion-list>
+    <ion-item *ngFor="let item of items" style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
+      <h6 style="color: #f39c12;">PUNCH {{ item.punch_type.toUpperCase() }}</h6><h6> at {{ item.punch_time | date: 'hh:mm:ss a' }}</h6>
+      <button ion-button item-right (click)="viewEntry({ record: item })">View</button>
+      <button ion-button item-right (click)="viewMap({ record: item })">Map</button>
+    </ion-item>
+    <br>
+  </ion-list>
+>>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 </ion-content>

@@ -1,8 +1,8 @@
 {
   "name": "smart-attendance",
-  "version": "0.3.3",
+  "version": "0.3.5",
   "author": "ieyandurian",
-  "homepage": "https://github.com/ieyandurian",
+  "homepage": "https://github.com/ieyandurian/smart-attendance",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",

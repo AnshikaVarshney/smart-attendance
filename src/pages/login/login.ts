@@ -10,7 +10,10 @@ import { Device } from "@ionic-native/device";
 import { UserProvider } from "../../providers/user/user";
 import { Toast } from "@ionic-native/toast";
 import { DeviceFeedback } from "@ionic-native/device-feedback";
+<<<<<<< HEAD
 import { Storage } from "@ionic/storage";
+=======
+>>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 
 @IonicPage()
 @Component({
@@ -30,7 +33,10 @@ export class LoginPage {
   private serial: any;
   loader: any;
   public loginData: any;
+<<<<<<< HEAD
   splash: any;
+=======
+>>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 
   constructor(
     private toast: Toast,
@@ -38,7 +44,10 @@ export class LoginPage {
     public fb: FormBuilder,
     public loadingCtrl: LoadingController,
     public popoverCtrl: PopoverController,
+<<<<<<< HEAD
     public storage: Storage,
+=======
+>>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
     public userData: UserProvider,
     private dev: Device,
     private deviceFeedback: DeviceFeedback
@@ -49,6 +58,7 @@ export class LoginPage {
     });
   }
 
+<<<<<<< HEAD
   ionViewDidLoad() {
     let status = localStorage.getItem("splashstatus");
     if (status === "true") {
@@ -62,6 +72,8 @@ export class LoginPage {
     }
   }
 
+=======
+>>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
   ionViewWillEnter() {
     this.resetFields();
     if (this.dev.uuid != null) {
