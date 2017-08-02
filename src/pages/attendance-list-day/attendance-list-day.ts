@@ -1,5 +1,10 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController, IonicPage } from "ionic-angular";
+import {
+  NavController,
+  LoadingController,
+  Refresher,
+  IonicPage
+} from "ionic-angular";
 import * as moment from "moment";
 import { UserProvider } from "../../providers/user/user";
 import { AttendanceProvider } from "../../providers/attendance/attendance";
@@ -30,6 +35,14 @@ export class AttendanceListDayPage {
     private deviceFeedback: DeviceFeedback
   ) {
     this.viewAll();
+  }
+
+  doRefresh(refresher: Refresher) {
+    this.deviceFeedback.acoustic();
+    this.initializeItems();
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
   }
 
   viewAll() {

@@ -3,6 +3,7 @@ import {
   NavParams,
   NavController,
   LoadingController,
+  Refresher,
   IonicPage
 } from "ionic-angular";
 import * as moment from "moment";
@@ -64,6 +65,14 @@ export class AttendanceListTimePage {
         this.sendNotification(msg);
       }
     );
+  }
+
+  doRefresh(refresher: Refresher) {
+    this.deviceFeedback.acoustic();
+    this.initializeItems();
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
   }
 
   initializeItems() {

@@ -26,7 +26,7 @@ export class EmailProvider {
   ) {
     this.http = http;
   }
-  
+
   emailSupportMessage(
     category: any,
     message: any,

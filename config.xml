@@ -85,7 +85,8 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="0" />
+    <preference name="ShowSplashScreen" value="false"/>
     <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="xwalkMultipleApk" value="false" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0" />

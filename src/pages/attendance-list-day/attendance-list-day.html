@@ -3,29 +3,32 @@
     <ion-title>
       My Attendance List
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (tap)="resetItems()" [disabled]="!isenabled">
+        <ion-icon ios="ios-refresh-circle" md="md-refresh-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
   <ion-row style="background-color: #f39c12;">
     <ion-col text-center>
       <ion-item>
         <ion-label>Filter List By :</ion-label>
-        <ion-datetime [disabled]="!isenabled" cancelText="Back" doneText="Done" displayFormat="DDD, MMM DD, YYYY" pickerFormat="MMM DD YYYY" [(ngModel)]="today" (ionChange)="getItems(today)" placeholder="Click Here to Filter List..." style="color: #f39c12;"></ion-datetime>
+        <ion-datetime [disabled]="!isenabled" cancelText="Back" doneText="Done" displayFormat="DDD, MMM DD, YYYY" pickerFormat="MMM DD YYYY"
+          [(ngModel)]="today" (ionChange)="getItems(today)" placeholder="Click Here to Filter List..." style="color: #f39c12;"></ion-datetime>
       </ion-item>
     </ion-col>
   </ion-row>
 </ion-header>
 
-<ion-content no-padding style="background-image: url('assets/img/background.jpg'); background-size: 100% 100%;">
-  <ion-row>
-    <ion-col text-center>
-      <!--button ion-button (click)="showRadioAlert()" [disabled]="!isenabled" outline strong small>Filter&nbsp;&nbsp;&nbsp;<ion-icon ios="ios-options-outline" md="md-options"></ion-icon></button-->
-      <button ion-button (click)="resetItems()" [disabled]="!isenabled" outline strong small>Clear My Filter&nbsp;&nbsp;&nbsp;<ion-icon ios="ios-options-outline" md="md-options"></ion-icon></button>
-    </ion-col>
-  </ion-row>
-  <ion-list>
-    <ion-item *ngFor="let item of items" style="color: aliceblue; background-color: rgba(0, 0, 0, 0.5);">
-      <h6 style="color: #f39c12;">PUNCHED </h6><h6> on {{ item.curdate | date: 'EEE, MMM dd, y' }}</h6>
+<ion-content no-padding style="background-color: rgba(255, 255, 255, 1);">
+  <ion-refresher (ionRefresh)="doRefresh($event)" style="background-color: rgba(255, 255, 255, 1);">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let item of items" no-padding>
+    <ion-item style="background-color: rgba(0, 0, 0, 1);">
+      <h6 style="color: #f39c12;">PUNCHED </h6>
+      <h6 style="color: aliceblue;"> on {{ item.curdate | date: 'EEE, MMM dd, y' }}</h6>
       <button ion-button item-right (click)="viewEntry({ record: item })">View Attendance</button>
     </ion-item>
-    <br>
-  </ion-list>
+  </ion-card>
 </ion-content>
