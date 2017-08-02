@@ -96,7 +96,7 @@ export class AttendancePage {
       setTimeout(() => {
         this.splash = false;
         this.tabBarElement.style.display = "flex";
-      }, 5000);
+      }, 4000);
     } else {
       this.splash = false;
       this.tabBarElement.style.display = "flex";

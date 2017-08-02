@@ -41,7 +41,7 @@ export class TutorialPage {
     if (status === "false") {
       setTimeout(() => {
         this.splash = false;
-      }, 5000);
+      }, 4000);
     }
   }
 }

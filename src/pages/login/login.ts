@@ -56,7 +56,7 @@ export class LoginPage {
       this.splash = true;
       setTimeout(() => {
         this.splash = false;
-      }, 5000);
+      }, 4000);
     } else {
       this.splash = false;
     }
