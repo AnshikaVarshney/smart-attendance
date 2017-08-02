@@ -7,7 +7,6 @@ $font-path: "../assets/fonts";
 
 @import "ionic.globals";
 
-
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
@@ -16,7 +15,7 @@ $font-path: "../assets/fonts";
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
 $headings-font-weight: 300;
-$tabs-background:	#151515	;
+$tabs-background: #151515;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -27,86 +26,79 @@ $tabs-background:	#151515	;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  theme:      #f39c12,
-  //primary:    #478aff,
-  primary:    #f39c12,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  darkless:   #444,
-  favorite:   #69BB7B,
-  twitter:    #1da1f4,
-  google:     #dc4a38,
-  vimeo:      #23b6ea,
-  facebook:   #3b5998
+  theme: #f39c12,
+  primary: #f39c12,
+  secondary: #32db64,
+  danger: #f53d3d,
+  light: #f4f4f4,
+  dark: #222,
+  darkless: #444,
+  favorite: #69bb7b,
+  twitter: #1da1f4,
+  google: #dc4a38,
+  vimeo: #23b6ea,
+  facebook: #3b5998
 );
-
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 //$toolbar-ios-active-color:                rgba(255, 255, 255, 0.5);
-$toolbar-ios-button-color:                color($colors, theme);
+$toolbar-ios-button-color: color($colors, theme);
 //$tabs-ios-tab-color-active:               color($colors, theme);
-$tabs-ios-tab-color-inactive:         	  color($colors, light);
+$tabs-ios-tab-color-inactive: color($colors, light);
 //$tab-button-ios-active-color:             color($colors, theme);
 
-$label-ios-text-color:                     color($colors, theme);	
-$label-ios-text-color-focused:             color($colors, theme);
+$label-ios-text-color: color($colors, theme);
+$label-ios-text-color-focused: color($colors, theme);
 
-$popover-ios-text-color:	                color($colors, theme);	
-$popover-ios-background:               	  color($colors, theme);
+$popover-ios-text-color: color($colors, theme);
+$popover-ios-background: color($colors, theme);
 
-$alert-ios-background:                    color($colors, light);
-$alert-ios-button-text-color:              color($colors, theme);
-$alert-ios-message-text-color:             color($colors, dark);
+$alert-ios-background: color($colors, light);
+$alert-ios-button-text-color: color($colors, theme);
+$alert-ios-message-text-color: color($colors, dark);
 
-$loading-ios-background:                  color($colors, light);
-$loading-ios-text-color:                  color($colors, dark);
-$loading-ios-spinner-color:               color($colors, theme);
+$loading-ios-background: color($colors, light);
+$loading-ios-text-color: color($colors, dark);
+$loading-ios-spinner-color: color($colors, theme);
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
 // Use the primary color as the background for the toolbar-md-background
-$toolbar-md-background:                   color($colors, theme);
+$toolbar-md-background: color($colors, theme);
 //$background-color:                        #fff;
 //$searchbar-md-background-color:           color($colors, theme);
 // Change the color of the segment button text
 //$toolbar-md-active-color:                 #fff;
 //$tab-button-md-active-color:              color($colors, theme);
 //$tabs-md-tab-color-active:                color($colors, theme);
-$tabs-md-tab-color-inactive:              color($colors, light);
-$label-md-text-color:                     color($colors, theme);	
-$label-md-text-color-focused:             color($colors, theme);
+$tabs-md-tab-color-inactive: color($colors, light);
+$label-md-text-color: color($colors, theme);
+$label-md-text-color-focused: color($colors, theme);
 
-$popover-md-text-color:	                  color($colors, theme);	
-$popover-md-background:               	  color($colors, theme);
+$popover-md-text-color: color($colors, theme);
+$popover-md-background: color($colors, theme);
 
-$alert-md-background-color:               color($colors, light);
-$alert-md-button-text-color:              color($colors, theme);
-$alert-md-message-text-color:             color($colors, dark);
-$alert-md-input-text-color:               color($colors, dark);
+$alert-md-background-color: color($colors, light);
+$alert-md-button-text-color: color($colors, theme);
+$alert-md-message-text-color: color($colors, dark);
+$alert-md-input-text-color: color($colors, dark);
 //$alert-md-box-shadow:                     0 3px 20px color($colors, theme);
 
-$loading-md-background:                  color($colors, light);
-$loading-md-text-color:                  color($colors, dark);
-$loading-md-spinner-color:               color($colors, theme);
+$loading-md-background: color($colors, light);
+$loading-md-text-color: color($colors, dark);
+$loading-md-spinner-color: color($colors, theme);
 //$loading-md-box-shadow:                  0 3px 20px color($colors, theme);
-<<<<<<< HEAD
 
-$refresher-icon-color:                  color($colors, theme);
-$refresher-text-color:                  color($colors, theme);
+$refresher-icon-color: color($colors, theme);
+$refresher-text-color: color($colors, theme);
 //$refresher-border-color:                color($colors, theme);
 
 // App Windows Variables
-=======
-	// App Windows Variables
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
 
 // App Theme
 // --------------------------------------------------
@@ -117,14 +109,12 @@ $refresher-text-color:                  color($colors, theme);
 
 @import "ionic.theme.default";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/v2/ionicons/
 
 @import "ionic.ionicons";
-
 
 // Fonts
 // --------------------------------------------------

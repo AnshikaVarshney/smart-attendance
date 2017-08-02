@@ -1,14 +1,10 @@
 import { Component } from "@angular/core";
-<<<<<<< HEAD
 import {
   NavController,
   LoadingController,
   Refresher,
   IonicPage
 } from "ionic-angular";
-=======
-import { NavController, LoadingController, IonicPage } from "ionic-angular";
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 import * as moment from "moment";
 import { UserProvider } from "../../providers/user/user";
 import { AttendanceProvider } from "../../providers/attendance/attendance";
@@ -41,7 +37,6 @@ export class AttendanceListDayPage {
     this.viewAll();
   }
 
-<<<<<<< HEAD
   doRefresh(refresher: Refresher) {
     this.deviceFeedback.acoustic();
     this.initializeItems();
@@ -50,8 +45,6 @@ export class AttendanceListDayPage {
     }, 2000);
   }
 
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
   viewAll() {
     this.today = null;
     let loadingPopup = this.loadingCtrl.create({

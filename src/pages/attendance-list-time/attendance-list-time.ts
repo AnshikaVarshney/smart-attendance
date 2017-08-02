@@ -3,10 +3,7 @@ import {
   NavParams,
   NavController,
   LoadingController,
-<<<<<<< HEAD
   Refresher,
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
   IonicPage
 } from "ionic-angular";
 import * as moment from "moment";
@@ -70,7 +67,6 @@ export class AttendanceListTimePage {
     );
   }
 
-<<<<<<< HEAD
   doRefresh(refresher: Refresher) {
     this.deviceFeedback.acoustic();
     this.initializeItems();
@@ -79,8 +75,6 @@ export class AttendanceListTimePage {
     }, 2000);
   }
 
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
   initializeItems() {
     this.items = this.posts;
   }

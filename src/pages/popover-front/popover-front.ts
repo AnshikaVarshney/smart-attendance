@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ViewController, App, IonicPage } from 'ionic-angular';
-import { DeviceFeedback } from '@ionic-native/device-feedback';
+import { Component } from "@angular/core";
+import { ViewController, App, IonicPage } from "ionic-angular";
+import { DeviceFeedback } from "@ionic-native/device-feedback";
 
 @IonicPage()
 @Component({
@@ -16,24 +16,24 @@ export class PopoverFrontPage {
     public viewCtrl: ViewController,
     public app: App,
     private deviceFeedback: DeviceFeedback
-  ) { }
+  ) {}
 
   faq() {
     this.deviceFeedback.acoustic();
     this.viewCtrl.dismiss().then(() => {
-      this.app.getRootNav().push('FAQPage');
+      this.app.getRootNav().push("FAQPage");
     });
   }
 
   support() {
     this.deviceFeedback.acoustic();
     this.viewCtrl.dismiss().then(() => {
-      this.app.getRootNav().push('SupportFrontPage');
+      this.app.getRootNav().push("SupportFrontPage");
     });
   }
 
   close(url: string) {
-    window.open(url, '_blank');
+    window.open(url, "_blank");
     this.viewCtrl.dismiss();
   }
 }

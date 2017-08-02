@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component, ViewChild } from "@angular/core";
 import { NavController, Slides, IonicPage } from "ionic-angular";
 import { Storage } from "@ionic/storage";
@@ -14,29 +13,11 @@ export class TutorialPage {
   splash = true;
 
   @ViewChild("slides") slides: Slides;
-=======
-import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides, IonicPage } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { DeviceFeedback } from '@ionic-native/device-feedback';
-
-@IonicPage()
-@Component({
-  selector: 'page-tutorial',
-  templateUrl: 'tutorial.html'
-})
-
-export class TutorialPage {
-  showSkip = true;
-
-  @ViewChild('slides') slides: Slides;
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 
   constructor(
     public navCtrl: NavController,
     public storage: Storage,
     private deviceFeedback: DeviceFeedback
-<<<<<<< HEAD
   ) {}
 
   startApp() {
@@ -44,15 +25,6 @@ export class TutorialPage {
     this.navCtrl.push("LoginPage").then(() => {
       this.storage.set("hasSeenTutorial", "true");
     });
-=======
-  ) { }
-
-  startApp() {
-    this.deviceFeedback.acoustic();
-    this.navCtrl.push('LoginPage').then(() => {
-      this.storage.set('hasSeenTutorial', 'true');
-    })
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
   }
 
   onSlideChangeStart(slider: Slides) {
@@ -62,7 +34,6 @@ export class TutorialPage {
   ionViewWillEnter() {
     this.slides.update();
   }
-<<<<<<< HEAD
 
   ionViewDidLoad() {
     localStorage.setItem("splashstatus", "false");
@@ -73,6 +44,4 @@ export class TutorialPage {
       }, 5000);
     }
   }
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 }

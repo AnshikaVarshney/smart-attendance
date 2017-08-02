@@ -53,23 +53,31 @@ export class SupportPage {
   }
 
   sendEmail(category: string, message: string) {
-    this.emailSender.emailSupportMessage(category, message, this.from, this.staff_id, this.name).subscribe(
-      success => {
-        console.log("SUCCESS -> " + JSON.stringify(success));
-        this.sendNotification(
-          "Thank you. Your message has been sent to the support."
-        );
-        this.loader.dismiss();
-        this.navCtrl.pop();
-      },
-      error => {
-        console.log("ERROR -> " + JSON.stringify(error));
-        let msg =
-          "Message Sending Failed!\nThere is no connection to the database server. Please try again later.";
-        this.sendNotification(msg);
-        this.loader.dismiss();
-      }
-    );
+    this.emailSender
+      .emailSupportMessage(
+        category,
+        message,
+        this.from,
+        this.staff_id,
+        this.name
+      )
+      .subscribe(
+        success => {
+          console.log("SUCCESS -> " + JSON.stringify(success));
+          this.sendNotification(
+            "Thank you. Your message has been sent to the support."
+          );
+          this.loader.dismiss();
+          this.navCtrl.pop();
+        },
+        error => {
+          console.log("ERROR -> " + JSON.stringify(error));
+          let msg =
+            "Message Sending Failed!\nThere is no connection to the database server. Please try again later.";
+          this.sendNotification(msg);
+          this.loader.dismiss();
+        }
+      );
   }
 
   send(category: string, message: string) {

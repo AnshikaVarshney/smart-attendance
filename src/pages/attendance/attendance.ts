@@ -18,10 +18,7 @@ import { Diagnostic } from "@ionic-native/diagnostic";
 import { Toast } from "@ionic-native/toast";
 import * as moment from "moment";
 import { DeviceFeedback } from "@ionic-native/device-feedback";
-<<<<<<< HEAD
 import { Storage } from "@ionic/storage";
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 
 import { UserProvider } from "../../providers/user/user";
 import { AttendanceProvider } from "../../providers/attendance/attendance";
@@ -65,11 +62,8 @@ export class AttendancePage {
   loader: any;
   public attCreate: any;
   public attCheck: any;
-<<<<<<< HEAD
   splash: any;
   tabBarElement: any;
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
 
   constructor(
     private toast: Toast,
@@ -79,10 +73,7 @@ export class AttendancePage {
     public navCtrl: NavController,
     public fb: FormBuilder,
     public user: UserProvider,
-<<<<<<< HEAD
     public storage: Storage,
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
     public attend: AttendanceProvider,
     public geocoder: NativeGeocoder,
     public locac: LocationAccuracy,
@@ -90,16 +81,12 @@ export class AttendancePage {
     private diagnostic: Diagnostic,
     private deviceFeedback: DeviceFeedback
   ) {
-<<<<<<< HEAD
     this.tabBarElement = document.querySelector(".tabbar");
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
     this.form = this.fb.group({
       availability: ["", Validators.required]
     });
   }
 
-<<<<<<< HEAD
   ionViewDidLoad() {
     this.tabBarElement.style.display = "none";
     let status = localStorage.getItem("splashstatus");
@@ -116,8 +103,6 @@ export class AttendancePage {
     }
   }
 
-=======
->>>>>>> af919822dcc014775e925fc58e77cf4e075dafe8
   ionViewWillEnter() {
     this.user.getUser().then(val => {
       this.staff = val;

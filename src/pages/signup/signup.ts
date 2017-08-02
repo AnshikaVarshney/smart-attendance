@@ -38,23 +38,21 @@ export class SignupPage {
   }
 
   send(recipient: string, token: string, name: string, msg: string) {
-    this.emailSender
-      .emailPasswordForgot(recipient, token, name, msg)
-      .subscribe(
-        success => {
-          console.log("SUCCESS -> " + JSON.stringify(success));
-          this.sendNotification(msg);
-          this.loader.dismiss();
-          this.navCtrl.setRoot("LoginPage");
-        },
-        error => {
-          console.log("ERROR -> " + JSON.stringify(error));
-          this.sendNotification(
-            "Error! Your request can't be performed. Please try again later."
-          );
-          this.loader.dismiss();
-        }
-      );
+    this.emailSender.emailPasswordForgot(recipient, token, name, msg).subscribe(
+      success => {
+        console.log("SUCCESS -> " + JSON.stringify(success));
+        this.sendNotification(msg);
+        this.loader.dismiss();
+        this.navCtrl.setRoot("LoginPage");
+      },
+      error => {
+        console.log("ERROR -> " + JSON.stringify(error));
+        this.sendNotification(
+          "Error! Your request can't be performed. Please try again later."
+        );
+        this.loader.dismiss();
+      }
+    );
   }
 
   saveEntry() {

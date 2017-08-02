@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
-import { DeviceFeedback } from '@ionic-native/device-feedback';
+import { Component } from "@angular/core";
+import { IonicPage } from "ionic-angular";
+import { DeviceFeedback } from "@ionic-native/device-feedback";
 
 @IonicPage()
 @Component({
-  selector: 'page-faq',
-  templateUrl: 'faq.html'
+  selector: "page-faq",
+  templateUrl: "faq.html"
 })
 export class FAQPage {
   public pageTitle: string;
@@ -18,10 +18,10 @@ export class FAQPage {
   public buttonClicked2: boolean = false;
   public buttonClicked3: boolean = false;
 
-  constructor(private deviceFeedback: DeviceFeedback) { }
+  constructor(private deviceFeedback: DeviceFeedback) {}
 
   ionViewWillEnter() {
-    this.pageTitle = 'Frequently Asked Questions';
+    this.pageTitle = "Frequently Asked Questions";
   }
 
   onButtonClick1() {

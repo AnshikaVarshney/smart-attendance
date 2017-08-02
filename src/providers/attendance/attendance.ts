@@ -97,7 +97,21 @@ export class AttendanceProvider {
     remarks: any
   ) {
     this.initializeData();
-    let body: string = "key=" + key + "&staff_id=" + staff_id + "&availability=" + availability + "&remarks=" + remarks + "&punch_lat=" + punch_lat + "&punch_lon=" + punch_lon + "&punch_loc=" + punch_loc,
+    let body: string =
+        "key=" +
+        key +
+        "&staff_id=" +
+        staff_id +
+        "&availability=" +
+        availability +
+        "&remarks=" +
+        remarks +
+        "&punch_lat=" +
+        punch_lat +
+        "&punch_lon=" +
+        punch_lon +
+        "&punch_loc=" +
+        punch_loc,
       type: string = "application/x-www-form-urlencoded; charset=UTF-8",
       headers: any = new Headers({ "Content-Type": type }),
       options: any = new RequestOptions({ headers: headers }),

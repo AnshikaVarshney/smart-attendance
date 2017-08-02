@@ -112,7 +112,7 @@ export class UserProvider {
     this.initializeData();
     let body: string = "staff_id=" + staff_id,
       type: string = "application/x-www-form-urlencoded; charset=UTF-8",
-      headers: any = new Headers({ 'Content-Type': type }),
+      headers: any = new Headers({ "Content-Type": type }),
       options: any = new RequestOptions({ headers: headers }),
       url: any = this.apiUrl + "resetpassword.php";
 
@@ -136,7 +136,7 @@ export class UserProvider {
     this.initializeData();
     let body: string = "staff_id=" + staff_id + "&password=" + password,
       type: string = "application/x-www-form-urlencoded; charset=UTF-8",
-      headers: any = new Headers({ 'Content-Type': type }),
+      headers: any = new Headers({ "Content-Type": type }),
       options: any = new RequestOptions({ headers: headers }),
       url: any = this.apiUrl + "updatepassword.php";
 
