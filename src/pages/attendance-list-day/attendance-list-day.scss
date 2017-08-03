@@ -14,3 +14,18 @@
   -ms-flex-direction: row;
   flex-direction: row;
 }
+.main-content {
+  background-color: map-get($colors, dark);
+  box-shadow: 0px -1px 13px 1px rgba(0, 0, 0, 0.3);
+}
+ion-card {
+  background-color: #fff;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 25px;
+  position: relative;
+  //top: -30px;
+}
+ion-slides {
+  height: initial;
+}

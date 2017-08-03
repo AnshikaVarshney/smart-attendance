@@ -4,18 +4,56 @@
       {{ selectedDate | date: 'fullDate' }}
     </ion-title>
   </ion-navbar>
+  <div class="main-content">
+    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged($event)">
+      <ion-segment-button value="in">
+        Punch In
+      </ion-segment-button>
+      <ion-segment-button value="out">
+        Punch Out
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 </ion-header>
 
-<ion-content no-padding style="background-color: rgba(255, 255, 255, 1);">
-  <ion-refresher (ionRefresh)="doRefresh($event)" style="background-color: rgba(255, 255, 255, 1);">
+<ion-content style="background-color: rgba(0, 0, 0, 1);">
+  <ion-refresher (ionRefresh)="doRefresh($event)" style="background-color: rgba(0, 0, 0, 1);">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
-  <ion-card *ngFor="let item of items">
-    <ion-item style="background-color: rgba(0, 0, 0, 1);;">
-      <h6 style="color: #f39c12;">PUNCH {{ item.punch_type.toUpperCase() }}</h6>
-      <h6 style="color: aliceblue;"> at {{ item.punch_time | date: 'hh:mm:ss a' }}</h6>
-      <button ion-button item-right (click)="viewEntry({ record: item })">View</button>
-      <button ion-button item-right (click)="viewMap({ record: item })">Map</button>
-    </ion-item>
-  </ion-card>
+  <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)" style="border-color: rgba(0, 0, 0, 1) !important;">
+    <ion-slide>
+      <div class="main-content">
+        <ion-card *ngFor="let itemIn of itemsIn">
+          <ion-item style="background-color: rgba(0, 0, 0, 0.7);;">
+            <h6 style="color: #f39c12;">PUNCH {{ itemIn.punch_type.toUpperCase() }}</h6>
+            <h6 style="color: aliceblue;"> at {{ itemIn.punch_time | date: 'hh:mm:ss a' }}</h6>
+            <button ion-button item-right (click)="viewEntry({ record: itemIn })">View</button>
+            <button ion-button item-right (click)="viewMap({ record: itemIn })">Map</button>
+          </ion-item>
+        </ion-card>
+        <ion-card *ngIf="!itemIndata">
+          <ion-item style="background-color: rgba(0, 0, 0, 0.7);">
+            <h5 style="color: aliceblue;">No data ... </h5>
+          </ion-item>
+        </ion-card>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="main-content">
+        <ion-card *ngFor="let itemOut of itemsOut">
+          <ion-item style="background-color: rgba(0, 0, 0, 0.7);;">
+            <h6 style="color: #f39c12;">PUNCH {{ itemOut.punch_type.toUpperCase() }}</h6>
+            <h6 style="color: aliceblue;"> at {{ itemOut.punch_time | date: 'hh:mm:ss a' }}</h6>
+            <button ion-button item-right (click)="viewEntry({ record: itemOut })">View</button>
+            <button ion-button item-right (click)="viewMap({ record: itemOut })">Map</button>
+          </ion-item>
+        </ion-card>
+        <ion-card *ngIf="!itemOutdata">
+          <ion-item style="background-color: rgba(0, 0, 0, 0.7);">
+            <h5 style="color: aliceblue;">No data ... </h5>
+          </ion-item>
+        </ion-card>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
