@@ -64,6 +64,7 @@ export class AttendancePage {
   public attCheck: any;
   splash: any;
   tabBarElement: any;
+  status: any;
 
   constructor(
     private toast: Toast,
@@ -89,8 +90,8 @@ export class AttendancePage {
 
   ionViewDidLoad() {
     this.tabBarElement.style.display = "none";
-    let status = localStorage.getItem("splashstatus");
-    if (status === "true") {
+    this.status = localStorage.getItem("splashstatus");
+    if (this.status === "true") {
       localStorage.setItem("splashstatus", "false");
       this.splash = true;
       setTimeout(() => {
@@ -203,11 +204,13 @@ export class AttendancePage {
         if (this.attCheck.user) {
           this.inisenabled = this.attCheck.in;
           this.outisenabled = this.attCheck.out;
-          this.sendNotification(this.attCheck.message);
         } else {
           this.inisenabled = this.attCheck.in;
           this.outisenabled = this.attCheck.out;
+        }
+        if (this.status === "true") {
           this.sendNotification(this.attCheck.message);
+          this.status = "false";
         }
       },
       (error: any) => {
@@ -342,7 +345,7 @@ export class AttendancePage {
           ". Please try again later.";
         this.alertError(this.msg);
         this.loader.dismiss();
-      } else if (parseFloat(localStorage.getItem("acc")) > 30) {
+      } else if (parseFloat(localStorage.getItem("acc")) > 50) {
         let acc = parseFloat(localStorage.getItem("acc"));
         localStorage.removeItem("acc");
         this.msg =
