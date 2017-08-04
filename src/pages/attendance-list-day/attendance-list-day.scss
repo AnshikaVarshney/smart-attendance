@@ -29,3 +29,6 @@ ion-card {
 ion-slides {
   height: initial;
 }
+.has-refresher .scroll-content {
+  border-top: 0 !important;
+}
