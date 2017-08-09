@@ -3,7 +3,6 @@ import {
   NavParams,
   NavController,
   LoadingController,
-  Refresher,
   IonicPage,
   Slides
 } from "ionic-angular";
@@ -66,13 +65,6 @@ export class AttendanceListTimePage {
             this.initializeItems();
             loadingPopup.dismiss();
           });
-          /*this.sendNotification(
-            `${staff_id}'s attendance records for ${moment(
-              this.selectedDate
-            ).format("dddd, MMMM Do YYYY")}.`
-          );*/
-        } else {
-          //this.sendNotification("Something went wrong!");
         }
       },
       (error: any) => {
@@ -85,6 +77,7 @@ export class AttendanceListTimePage {
   }
 
   onSegmentChanged(segmentButton: any) {
+    this.deviceFeedback.acoustic();
     const selectedIndex = this.slides.findIndex((slide: any) => {
       return slide.id === segmentButton.value;
     });
@@ -92,18 +85,9 @@ export class AttendanceListTimePage {
   }
 
   onSlideChanged(slider: any) {
-    this.deviceFeedback.acoustic();
     let index = this.slider.getActiveIndex();
     const currentSlide = this.slides[index];
     this.selectedSegment = currentSlide.id;
-  }
-
-  doRefresh(refresher: Refresher) {
-    this.deviceFeedback.acoustic();
-    this.initializeItems();
-    setTimeout(() => {
-      refresher.complete();
-    }, 2000);
   }
 
   initializeItems() {
@@ -128,12 +112,12 @@ export class AttendanceListTimePage {
   }
 
   checkItems() {
-    if (this.itemsIn == "") {
+    if (this.itemsIn.length == 0) {
       this.itemIndata = false;
     } else {
       this.itemIndata = true;
     }
-    if (this.itemsOut == "") {
+    if (this.itemsOut.length == 0) {
       this.itemOutdata = false;
     } else {
       this.itemOutdata = true;

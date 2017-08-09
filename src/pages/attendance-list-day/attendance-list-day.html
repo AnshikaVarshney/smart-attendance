@@ -3,11 +3,6 @@
     <ion-title>
       My Attendance List
     </ion-title>
-    <ion-buttons end>
-      <button ion-button (tap)="resetItems()" [disabled]="!isenabled">
-        <ion-icon ios="ios-refresh-circle" md="md-refresh-circle"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
   <ion-row style="background-color: #f39c12;">
     <ion-col text-center>
@@ -37,11 +32,16 @@
 </ion-header>
 
 <ion-content style="background-color: rgba(0, 0, 0, 1);">
-  <ion-refresher (ionRefresh)="doRefresh($event)" style="background-color: rgba(0, 0, 0, 1);">
+  <ion-refresher *ngIf="!isenabledref" (ionRefresh)="doRefresh($event)" style="background-color: rgba(0, 0, 0, 1);">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
   <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)" style="border-color: rgba(0, 0, 0, 1) !important;">
     <ion-slide>
+      <ion-row>
+        <ion-col text-center>
+          <button ion-button (click)="resetItems()" [disabled]="!isenabled" outline strong small>Clear My Filter&nbsp;&nbsp;&nbsp;<ion-icon ios="ios-options-outline" md="md-options"></ion-icon></button>
+        </ion-col>
+      </ion-row>
       <div class="main-content">
         <ion-card *ngFor="let item of items">
           <ion-item style="background-color: rgba(0, 0, 0, 0.7);">
@@ -106,4 +106,9 @@
       </div>
     </ion-slide>
   </ion-slides>
+  <ion-buttons *ngIf="showButton">
+    <button ion-button large icon-end (click)="scrollToTop()">
+      <ion-icon ios="ios-arrow-dropup-circle" md="md-arrow-dropup-circle"></ion-icon>
+    </button>
+  </ion-buttons>
 </ion-content>

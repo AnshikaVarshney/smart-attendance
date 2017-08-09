@@ -17,9 +17,6 @@
 </ion-header>
 
 <ion-content style="background-color: rgba(0, 0, 0, 1);">
-  <ion-refresher (ionRefresh)="doRefresh($event)" style="background-color: rgba(0, 0, 0, 1);">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
-  </ion-refresher>
   <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)" style="border-color: rgba(0, 0, 0, 1) !important;">
     <ion-slide>
       <div class="main-content">

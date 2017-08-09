@@ -65,6 +65,7 @@ export class AttendancePage {
   splash: any;
   tabBarElement: any;
   status: any;
+  allow: any;
 
   constructor(
     private toast: Toast,
@@ -260,15 +261,19 @@ export class AttendancePage {
         } else {
           location = loc;
         }
-        this.punch(
-          this.key,
-          this.staff.login,
-          lat,
-          lon,
-          location,
-          this.availability,
-          this.remarks
-        );
+        if (this.allow === true) {
+          this.punch(
+            this.key,
+            this.staff.login,
+            lat,
+            lon,
+            location,
+            this.availability,
+            this.remarks
+          );
+        } else {
+          this.alertAttendance(lat, lon, location);
+        }
       }
     );
   }
@@ -333,28 +338,21 @@ export class AttendancePage {
         localStorage.getItem("lat") === null ||
         localStorage.getItem("lon") === null
       ) {
-        let err = localStorage.getItem("code");
+        /*let err = localStorage.getItem("code");
         let msg = localStorage.getItem("msg");
         localStorage.removeItem("code");
         localStorage.removeItem("msg");
         this.msg =
-          "Error Code: " +
-          err +
-          ". Message: " +
-          msg +
-          ". Please try again later.";
+          "Location cannot be detected. Please try again.";
         this.alertError(this.msg);
-        this.loader.dismiss();
-      } else if (parseFloat(localStorage.getItem("acc")) > 50) {
-        let acc = parseFloat(localStorage.getItem("acc"));
-        localStorage.removeItem("acc");
-        this.msg =
-          "The location detected by the device is not accurate and will not be recorded. It has the accuracy of " +
-          acc +
-          " meters. Please try again.";
-        this.alertError(this.msg);
-        this.loader.dismiss();
+        this.loader.dismiss();*/
+        this.geoload();
       } else {
+        if (parseFloat(localStorage.getItem("acc")) > 20) {
+          this.allow = false;
+        } else {
+          this.allow = true;
+        }
         let lat = parseFloat(localStorage.getItem("lat"));
         let lon = parseFloat(localStorage.getItem("lon"));
         this.accuracy = parseFloat(localStorage.getItem("acc")).toFixed(2);
@@ -439,6 +437,43 @@ export class AttendancePage {
           handler: () => {
             console.log("Dismiss clicked");
             this.deviceFeedback.acoustic();
+          }
+        }
+      ],
+      cssClass: "alert"
+    });
+    alert.present();
+  }
+
+  alertAttendance(lat: any, lon: any, loc: any) {
+    let alert = this.alertCtrl.create({
+      title: "Attention!",
+      message: `<br/>The location detected by the device is not accurate and will not be recorded. It requires your permission to allow this data to be stored as your attendance.<br/><br/><u>Accuracy:</u><br/>${this
+        .accuracy} meters<br/><br/><u>Location:</u><br/>${loc}.<br/><br/>Click &lt;&lt;DISMISS&gt;&gt; to dismiss this dialog box and try again or click &lt;&lt;PROCEED&gt;&gt; to continue to PUNCH ${this.k} your attendance.`,
+      buttons: [
+        {
+          text: "Dismiss",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+            this.deviceFeedback.acoustic();
+            this.loader.dismiss();
+          }
+        },
+        {
+          text: "Proceed",
+          handler: () => {
+            console.log("Continue clicked");
+            this.deviceFeedback.acoustic();
+            this.punch(
+              this.key,
+              this.staff.login,
+              lat,
+              lon,
+              loc,
+              this.availability,
+              this.remarks
+            );
           }
         }
       ],
