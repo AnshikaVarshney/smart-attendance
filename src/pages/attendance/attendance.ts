@@ -348,7 +348,7 @@ export class AttendancePage {
         this.loader.dismiss();*/
         this.geoload();
       } else {
-        if (parseFloat(localStorage.getItem("acc")) > 20) {
+        if (parseFloat(localStorage.getItem("acc")) > 30) {
           this.allow = false;
         } else {
           this.allow = true;
@@ -449,7 +449,8 @@ export class AttendancePage {
     let alert = this.alertCtrl.create({
       title: "Attention!",
       message: `<br/>The location detected by the device is not accurate and will not be recorded. It requires your permission to allow this data to be stored as your attendance.<br/><br/><u>Accuracy:</u><br/>${this
-        .accuracy} meters<br/><br/><u>Location:</u><br/>${loc}.<br/><br/>Click &lt;&lt;DISMISS&gt;&gt; to dismiss this dialog box and try again or click &lt;&lt;PROCEED&gt;&gt; to continue to PUNCH ${this.k} your attendance.`,
+        .accuracy} meters<br/><br/><u>Location:</u><br/>${loc}.<br/><br/>Click &lt;&lt;DISMISS&gt;&gt; to dismiss this dialog box and try again or click &lt;&lt;PROCEED&gt;&gt; to continue to PUNCH ${this
+        .k} your attendance.`,
       buttons: [
         {
           text: "Dismiss",

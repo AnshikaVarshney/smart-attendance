@@ -88,7 +88,8 @@ export class AttendanceListDayPage {
 
   doRefresh(refresher: Refresher) {
     this.today = null;
-    this.viewAll();
+    this.deviceFeedback.acoustic();
+    this.refreshItem();
     setTimeout(() => {
       refresher.complete();
     }, 2000);
@@ -117,6 +118,24 @@ export class AttendanceListDayPage {
           "Attendance Retrieval Failed!\nThere is no connection to the database server. Please try again later.";
         this.sendNotification(msg);
         this.isenabled = false;
+      }
+    );
+  }
+
+  refreshItem() {
+    let staff_id = localStorage.getItem("id");
+    this.attend.retrieveAttendanceByDay(staff_id).subscribe(
+      data => {
+        if (data) {
+          this.posts = data;
+          this.initializeItemsAll();
+        }
+      },
+      (error: any) => {
+        console.log("There is no connection to the database server.");
+        let msg =
+          "Attendance Retrieval Failed!\nThere is no connection to the database server. Please try again later.";
+        this.sendNotification(msg);
       }
     );
   }
@@ -214,20 +233,14 @@ export class AttendanceListDayPage {
 
   getItems(ev: any) {
     this.deviceFeedback.acoustic();
-    let loader = this.loadingCtrl.create({
-      content: "Loading..."
-    });
-    loader.present().then(() => {
-      this.initializeItemsAll();
-      let val = moment(ev).format("MMM DD YYYY");
-      if (val && val.trim() != "") {
-        this.items = this.items.filter((item: any) => {
-          return moment(item.curdate).format("MMM DD YYYY").indexOf(val) > -1;
-        });
-      }
-      this.checkItems();
-      loader.dismiss();
-    });
+    this.initializeItemsAll();
+    let val = moment(ev).format("MMM DD YYYY");
+    if (val && val.trim() != "") {
+      this.items = this.items.filter((item: any) => {
+        return moment(item.curdate).format("MMM DD YYYY").indexOf(val) > -1;
+      });
+    }
+    this.checkItems();
   }
 
   resetItems() {

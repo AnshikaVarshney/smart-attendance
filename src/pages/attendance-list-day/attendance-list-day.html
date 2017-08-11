@@ -8,7 +8,7 @@
     <ion-col text-center>
       <ion-item>
         <ion-label>Filter List By :</ion-label>
-        <ion-datetime [disabled]="!isenabled" cancelText="Back" doneText="Done" displayFormat="DDD, MMM DD, YYYY" pickerFormat="MMM DD YYYY"
+        <ion-datetime [disabled]="isenabledref" cancelText="Back" doneText="Done" displayFormat="DDD, MMM DD, YYYY" pickerFormat="MMM DD YYYY"
           [(ngModel)]="today" (ionChange)="getItems(today)" placeholder="Click Here to Filter List..." style="color: #f39c12;"></ion-datetime>
       </ion-item>
     </ion-col>
