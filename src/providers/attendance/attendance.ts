@@ -63,6 +63,34 @@ export class AttendanceProvider {
       .catch(this.handleError);
   }
 
+  retrieveAttendanceByDayAll(staff_id: any): Observable<string[]> {
+    let body: string = "key=all&staff_id=" + staff_id,
+      type: string = "application/x-www-form-urlencoded; charset=UTF-8",
+      headers: any = new Headers({ "Content-Type": type }),
+      options: any = new RequestOptions({ headers: headers }),
+      url: any = this.apiUrl + "retrieve-attendance-day.php";
+
+    return this.http
+      .post(url, body, options)
+      .timeout(5000)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  retrieveAttendanceByDayScroll(staff_id: any, start: any): Observable<string[]> {
+    let body: string = "key=scroll&staff_id=" + staff_id + "&start=" + start,
+      type: string = "application/x-www-form-urlencoded; charset=UTF-8",
+      headers: any = new Headers({ "Content-Type": type }),
+      options: any = new RequestOptions({ headers: headers }),
+      url: any = this.apiUrl + "retrieve-attendance-day.php";
+
+    return this.http
+      .post(url, body, options)
+      .timeout(5000)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
   retrieveTodayAttendance(staff_id: any) {
     this.initializeData();
     let body: string = "staff_id=" + staff_id,
