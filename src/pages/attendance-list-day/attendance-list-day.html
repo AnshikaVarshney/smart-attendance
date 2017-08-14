@@ -106,9 +106,8 @@
       </div>
     </ion-slide>
   </ion-slides>
-  <ion-buttons *ngIf="showButton">
-    <button ion-button large icon-end (click)="scrollToTop()">
-      <ion-icon ios="ios-arrow-dropup-circle" md="md-arrow-dropup-circle"></ion-icon>
-    </button>
-  </ion-buttons>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="!isenabledinf">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

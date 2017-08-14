@@ -449,8 +449,7 @@ export class AttendancePage {
     let alert = this.alertCtrl.create({
       title: "Attention!",
       message: `<br/>The location detected by the device is not accurate and will not be recorded. It requires your permission to allow this data to be stored as your attendance.<br/><br/><u>Accuracy:</u><br/>${this
-        .accuracy} meters<br/><br/><u>Location:</u><br/>${loc}.<br/><br/>Click &lt;&lt;DISMISS&gt;&gt; to dismiss this dialog box and try again or click &lt;&lt;PROCEED&gt;&gt; to continue to PUNCH ${this
-        .k} your attendance.`,
+        .accuracy} meters<br/><br/><u>Location:</u><br/>${loc}.<br/><br/>Click &lt;&lt;DISMISS&gt;&gt; to dismiss this dialog box and try again or click &lt;&lt;PROCEED&gt;&gt; to continue to PUNCH ${this.k} your attendance.`,
       buttons: [
         {
           text: "Dismiss",

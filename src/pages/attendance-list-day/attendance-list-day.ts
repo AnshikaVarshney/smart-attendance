@@ -32,6 +32,7 @@ export class AttendanceListDayPage {
     .slice(0, -1);
   isenabled: boolean = false;
   isenabledref: boolean = false;
+  isenabledinf: boolean = false;
   today: any;
   itemDay: any = moment(this.localISOTime).format("MMM DD YYYY");
   itemMonth: any = moment(this.localISOTime).format("MMM");
@@ -40,6 +41,8 @@ export class AttendanceListDayPage {
   itemDdata: boolean = false;
   itemMdata: boolean = false;
   itemYdata: boolean = false;
+  start: number = 10;
+  hasMoreData: boolean = false;
 
   constructor(
     private toast: Toast,
@@ -81,8 +84,10 @@ export class AttendanceListDayPage {
     this.selectedSegment = currentSlide.id;
     if (this.selectedSegment == "all") {
       this.isenabledref = false;
+      this.isenabledinf = false;
     } else {
       this.isenabledref = true;
+      this.isenabledinf = true;
     }
   }
 
@@ -128,7 +133,7 @@ export class AttendanceListDayPage {
       data => {
         if (data) {
           this.posts = data;
-          this.initializeItemsAll();
+          this.initializeItems();
         }
       },
       (error: any) => {
@@ -138,6 +143,40 @@ export class AttendanceListDayPage {
         this.sendNotification(msg);
       }
     );
+  }
+
+  doInfinite(infiniteScroll: any) {
+    console.log("Begin async operation");
+
+    setTimeout(() => {
+      let staff_id = localStorage.getItem("id");
+      this.attend.retrieveAttendanceByDayScroll(staff_id, this.start).subscribe(
+        data => {
+          if (data) {
+            this.posts = data;
+            for (let i = 0; i < this.posts.length; i++) {
+              this.items.push(this.posts[i]);
+            }
+            this.start += 10;
+            this.initialize();
+            if (data.length == 0) {
+              this.isenabledinf = true;
+            } else {
+              this.isenabledinf = false;
+            }
+          }
+        },
+        (error: any) => {
+          console.log("There is no connection to the database server.");
+          let msg =
+            "Attendance Retrieval Failed!\nThere is no connection to the database server. Please try again later.";
+          this.sendNotification(msg);
+        }
+      );
+
+      console.log("Async operation has ended");
+      infiniteScroll.complete();
+    }, 500);
   }
 
   viewAll() {
@@ -162,6 +201,11 @@ export class AttendanceListDayPage {
         this.sendNotification(msg);
       }
     );
+  }
+
+  initialize() {
+    this.listItems();
+    this.checkItems();
   }
 
   initializeItems() {
@@ -246,7 +290,7 @@ export class AttendanceListDayPage {
   resetItems() {
     this.today = null;
     this.deviceFeedback.acoustic();
-    this.viewAll();
+    this.view();
   }
 
   sendNotification(message: any): void {
