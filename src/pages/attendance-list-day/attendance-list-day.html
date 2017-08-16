@@ -4,12 +4,37 @@
       My Attendance List
     </ion-title>
   </ion-navbar>
-  <ion-row style="background-color: #f39c12;">
+  <ion-row style="background-color: #f39c12;" *ngIf="isenabledref">
     <ion-col text-center>
       <ion-item>
         <ion-label>Filter List By :</ion-label>
-        <ion-datetime [disabled]="isenabledref" cancelText="Back" doneText="Done" displayFormat="DDD, MMM DD, YYYY" pickerFormat="MMM DD YYYY"
+        <ion-datetime cancelText="Back" doneText="Done" displayFormat="DDD, MMM DD, YYYY" pickerFormat="MMM DD YYYY"
           [(ngModel)]="today" (ionChange)="getItems(today)" placeholder="Click Here to Filter List..." style="color: #f39c12;"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="background-color: #f39c12;" *ngIf="isenabledrefD">
+    <ion-col text-center>
+      <ion-item>
+        <ion-label style="color: #f39c12;">Filter List Not Available</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="background-color: #f39c12;" *ngIf="isenabledrefM">
+    <ion-col text-center>
+      <ion-item>
+        <ion-label>Filter List By :</ion-label>
+        <ion-datetime cancelText="Back" doneText="Done" displayFormat="YY" pickerFormat="YY" min="2001" max="2012"
+          [(ngModel)]="todayM" (ionChange)="getItemsM(todayM)" placeholder="Month..." style="color: #f39c12;"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="background-color: #f39c12;" *ngIf="isenabledrefY">
+    <ion-col text-center>
+      <ion-item>
+        <ion-label>Filter List By :</ion-label>
+        <ion-datetime cancelText="Back" doneText="Done" displayFormat="YYYY" pickerFormat="YYYY"
+          [(ngModel)]="todayY" (ionChange)="getItemsY(todayY)" placeholder="Year..." style="color: #f39c12;"></ion-datetime>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -31,17 +56,12 @@
   </div>
 </ion-header>
 
-<ion-content style="background-color: rgba(0, 0, 0, 1);">
-  <ion-refresher *ngIf="!isenabledref" (ionRefresh)="doRefresh($event)" style="background-color: rgba(0, 0, 0, 1);">
+<ion-content no-padding style="background-color: rgba(0, 0, 0, 1);">
+  <ion-refresher (ionRefresh)="doRefresh($event)" style="background-color: rgba(0, 0, 0, 1);">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
   <ion-slides #mySlider (ionSlideDidChange)="onSlideChanged($event)" style="border-color: rgba(0, 0, 0, 1) !important;">
     <ion-slide>
-      <ion-row>
-        <ion-col text-center>
-          <button ion-button (click)="resetItems()" [disabled]="!isenabled" outline strong small>Clear My Filter&nbsp;&nbsp;&nbsp;<ion-icon ios="ios-options-outline" md="md-options"></ion-icon></button>
-        </ion-col>
-      </ion-row>
       <div class="main-content">
         <ion-card *ngFor="let item of items">
           <ion-item style="background-color: rgba(0, 0, 0, 0.7);">
@@ -106,7 +126,7 @@
       </div>
     </ion-slide>
   </ion-slides>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="!isenabledinf">
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="isenabledinf">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

@@ -26,14 +26,20 @@ export class AttendanceListDayPage {
   private itemsM: any;
   private itemsY: any;
   private items: any;
+  private itemsAll: any;
   tzoffset = new Date().getTimezoneOffset() * 60000; //offset in milliseconds
   localISOTime = new Date(Date.now() - this.tzoffset)
     .toISOString()
     .slice(0, -1);
   isenabled: boolean = false;
   isenabledref: boolean = false;
+  isenabledrefD: boolean = false;
+  isenabledrefM: boolean = false;
+  isenabledrefY: boolean = false;
   isenabledinf: boolean = false;
   today: any;
+  todayM: any;
+  todayY: any;
   itemDay: any = moment(this.localISOTime).format("MMM DD YYYY");
   itemMonth: any = moment(this.localISOTime).format("MMM");
   itemYear: any = moment(this.localISOTime).format("YYYY");
@@ -67,6 +73,7 @@ export class AttendanceListDayPage {
         id: "year"
       }
     ];
+    this.isenabledref = true;
     this.view();
   }
 
@@ -83,25 +90,82 @@ export class AttendanceListDayPage {
     const currentSlide = this.slides[index];
     this.selectedSegment = currentSlide.id;
     if (this.selectedSegment == "all") {
-      this.isenabledref = false;
-      this.isenabledinf = false;
-    } else {
       this.isenabledref = true;
+      this.isenabledrefD = false;
+      this.isenabledrefM = false;
+      this.isenabledrefY = false;
       this.isenabledinf = true;
+    } else if (this.selectedSegment == "today") {
+      this.isenabledref = false;
+      this.isenabledrefD = true;
+      this.isenabledrefM = false;
+      this.isenabledrefY = false;
+      this.isenabledinf = false;
+    } else if (this.selectedSegment == "month") {
+      this.isenabledref = false;
+      this.isenabledrefD = false;
+      this.isenabledrefM = true;
+      this.isenabledrefY = false;
+      this.isenabledinf = false;
+    } else if (this.selectedSegment == "year") {
+      this.isenabledref = false;
+      this.isenabledrefD = false;
+      this.isenabledrefM = false;
+      this.isenabledrefY = true;
+      this.isenabledinf = false;
     }
   }
 
   doRefresh(refresher: Refresher) {
     this.today = null;
+    this.todayM = null;
+    this.todayY = null;
+    this.isenabledinf = false;
     this.deviceFeedback.acoustic();
-    this.refreshItem();
     setTimeout(() => {
-      refresher.complete();
-    }, 2000);
+      this.refreshItem();
+      setTimeout(() => {
+        refresher.complete();
+      }, 1000);
+    }, 1000);
+  }
+
+  doInfinite(infiniteScroll: any) {
+    console.log("Begin async operation");
+    let staff_id = localStorage.getItem("id");
+    this.attend.retrieveAttendanceByDayScroll(staff_id, this.start).subscribe(
+      data => {
+        if (data) {
+          this.posts = data;
+          for (let i = 0; i < this.posts.length; i++) {
+            this.items.push(this.posts[i]);
+          }
+          this.start += 10;
+          this.initialize();
+          if (data.length == 0) {
+            this.isenabledinf = true;
+          } else {
+            this.isenabledinf = false;
+          }
+        }
+      },
+      (error: any) => {
+        console.log("There is no connection to the database server.");
+        let msg =
+          "Attendance Retrieval Failed!\nThere is no connection to the database server. Please try again later.";
+        this.sendNotification(msg);
+      }
+    );
+    setTimeout(() => {
+      console.log("Async operation has ended");
+      infiniteScroll.complete();
+    }, 1000);
   }
 
   view() {
     this.today = null;
+    this.todayM = null;
+    this.todayY = null;
     let loadingPopup = this.loadingCtrl.create({
       content: "Retrieving..."
     });
@@ -134,6 +198,7 @@ export class AttendanceListDayPage {
         if (data) {
           this.posts = data;
           this.initializeItems();
+          this.start = 10;
         }
       },
       (error: any) => {
@@ -145,54 +210,14 @@ export class AttendanceListDayPage {
     );
   }
 
-  doInfinite(infiniteScroll: any) {
-    console.log("Begin async operation");
-
-    setTimeout(() => {
-      let staff_id = localStorage.getItem("id");
-      this.attend.retrieveAttendanceByDayScroll(staff_id, this.start).subscribe(
-        data => {
-          if (data) {
-            this.posts = data;
-            for (let i = 0; i < this.posts.length; i++) {
-              this.items.push(this.posts[i]);
-            }
-            this.start += 10;
-            this.initialize();
-            if (data.length == 0) {
-              this.isenabledinf = true;
-            } else {
-              this.isenabledinf = false;
-            }
-          }
-        },
-        (error: any) => {
-          console.log("There is no connection to the database server.");
-          let msg =
-            "Attendance Retrieval Failed!\nThere is no connection to the database server. Please try again later.";
-          this.sendNotification(msg);
-        }
-      );
-
-      console.log("Async operation has ended");
-      infiniteScroll.complete();
-    }, 500);
-  }
-
   viewAll() {
-    let loadingPopup = this.loadingCtrl.create({
-      content: "Retrieving..."
-    });
     let staff_id = localStorage.getItem("id");
-    this.attend.retrieveAttendanceByDay(staff_id).subscribe(
+    this.attend.retrieveAttendanceByDayAll(staff_id).subscribe(
       data => {
-        loadingPopup.present().then(() => {
-          if (data) {
-            this.posts = data;
-            this.initializeItemsAll();
-          }
-          loadingPopup.dismiss();
-        });
+        if (data) {
+          this.posts = data;
+          this.initializeItemsAll();
+        }
       },
       (error: any) => {
         console.log("There is no connection to the database server.");
@@ -215,7 +240,7 @@ export class AttendanceListDayPage {
   }
 
   initializeItemsAll() {
-    this.items = this.posts;
+    this.itemsAll = this.posts;
     this.checkItems();
   }
 
@@ -277,20 +302,159 @@ export class AttendanceListDayPage {
 
   getItems(ev: any) {
     this.deviceFeedback.acoustic();
-    this.initializeItemsAll();
-    let val = moment(ev).format("MMM DD YYYY");
-    if (val && val.trim() != "") {
-      this.items = this.items.filter((item: any) => {
-        return moment(item.curdate).format("MMM DD YYYY").indexOf(val) > -1;
+    let loadingPopup = this.loadingCtrl.create({
+      content: "Retrieving..."
+    });
+    if (ev != null) {
+      loadingPopup.present().then(() => {
+        this.viewAll();
+        setTimeout(() => {
+          console.log(ev);
+          let val = moment(ev).format("MMM DD YYYY");
+          if (val && val.trim() != "") {
+            this.items = this.itemsAll.filter((item: any) => {
+              return (
+                moment(item.curdate).format("MMM DD YYYY").indexOf(val) > -1
+              );
+            });
+          }
+          this.checkItems();
+          loadingPopup.dismiss();
+        }, 1000);
       });
+    } else {
+      this.viewAll();
+      setTimeout(() => {
+        console.log(ev);
+        let val = moment(ev).format("MMM DD YYYY");
+        if (val && val.trim() != "") {
+          this.items = this.itemsAll.filter((item: any) => {
+            return moment(item.curdate).format("MMM DD YYYY").indexOf(val) > -1;
+          });
+        }
+        this.checkItems();
+      }, 1000);
     }
-    this.checkItems();
   }
 
-  resetItems() {
-    this.today = null;
+  getItemsM(ev: any) {
     this.deviceFeedback.acoustic();
-    this.view();
+    let loadingPopup = this.loadingCtrl.create({
+      content: "Retrieving..."
+    });
+    if (ev != null) {
+      loadingPopup.present().then(() => {
+        this.viewAll();
+        setTimeout(() => {
+          console.log("ev: " + ev);
+          console.log("this.todayM: " + this.todayM);
+          let val: string;
+          if (ev == "2001") {
+            val = "Jan";
+          } else if (ev == "2002") {
+            val = "Feb";
+          } else if (ev == "2003") {
+            val = "Mar";
+          } else if (ev == "2004") {
+            val = "Apr";
+          } else if (ev == "2005") {
+            val = "May";
+          } else if (ev == "2006") {
+            val = "Jun";
+          } else if (ev == "2007") {
+            val = "Jul";
+          } else if (ev == "2008") {
+            val = "Aug";
+          } else if (ev == "2009") {
+            val = "Sep";
+          } else if (ev == "2010") {
+            val = "Oct";
+          } else if (ev == "2011") {
+            val = "Nov";
+          } else if (ev == "2012") {
+            val = "Dec";
+          }
+          if (val && val.trim() != "") {
+            this.itemsM = this.itemsAll.filter((item: any) => {
+              return moment(item.curdate).format("MMM").indexOf(val) > -1;
+            });
+          }
+          this.checkItems();
+          loadingPopup.dismiss();
+        }, 1000);
+      });
+    } else {
+      this.viewAll();
+      setTimeout(() => {
+        console.log("ev: " + ev);
+        console.log("this.todayM: " + this.todayM);
+        let val: string;
+        if (ev == "2001") {
+          val = "Jan";
+        } else if (ev == "2002") {
+          val = "Feb";
+        } else if (ev == "2003") {
+          val = "Mar";
+        } else if (ev == "2004") {
+          val = "Apr";
+        } else if (ev == "2005") {
+          val = "May";
+        } else if (ev == "2006") {
+          val = "Jun";
+        } else if (ev == "2007") {
+          val = "Jul";
+        } else if (ev == "2008") {
+          val = "Aug";
+        } else if (ev == "2009") {
+          val = "Sep";
+        } else if (ev == "2010") {
+          val = "Oct";
+        } else if (ev == "2011") {
+          val = "Nov";
+        } else if (ev == "2012") {
+          val = "Dec";
+        }
+        if (val && val.trim() != "") {
+          this.itemsM = this.itemsAll.filter((item: any) => {
+            return moment(item.curdate).format("MMM").indexOf(val) > -1;
+          });
+        }
+        this.checkItems();
+      }, 1000);
+    }
+  }
+
+  getItemsY(ev: any) {
+    this.deviceFeedback.acoustic();
+    let loadingPopup = this.loadingCtrl.create({
+      content: "Retrieving..."
+    });
+    if (ev != null) {
+      loadingPopup.present().then(() => {
+        this.viewAll();
+        setTimeout(() => {
+          let val = moment(ev).format("YYYY");
+          if (val && val.trim() != "") {
+            this.itemsY = this.itemsAll.filter((item: any) => {
+              return moment(item.curdate).format("YYYY").indexOf(val) > -1;
+            });
+          }
+          this.checkItems();
+          loadingPopup.dismiss();
+        }, 1000);
+      });
+    } else {
+      this.viewAll();
+      setTimeout(() => {
+        let val = moment(ev).format("YYYY");
+        if (val && val.trim() != "") {
+          this.itemsY = this.itemsAll.filter((item: any) => {
+            return moment(item.curdate).format("YYYY").indexOf(val) > -1;
+          });
+        }
+        this.checkItems();
+      }, 1000);
+    }
   }
 
   sendNotification(message: any): void {

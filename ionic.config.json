@@ -1,5 +1,8 @@
 {
   "name": "smart-attendance",
   "app_id": "f4db78fe",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

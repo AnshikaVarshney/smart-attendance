@@ -29,6 +29,18 @@ ion-card {
 ion-slides {
   height: initial;
 }
+ion-slide {
+  overflow-y: auto;
+}
+.slider-slides {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+ion-scroll {
+  width: 100%;
+  height: 100%;
+}
 .has-refresher .scroll-content {
   border-top: 0 !important;
 }
