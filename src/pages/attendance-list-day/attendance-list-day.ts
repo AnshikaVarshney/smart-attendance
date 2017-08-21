@@ -73,8 +73,9 @@ export class AttendanceListDayPage {
         id: "year"
       }
     ];
-    this.isenabledref = true;
     this.view();
+    this.isenabledref = true;
+    this.isenabledinf = true;
   }
 
   onSegmentChanged(segmentButton: any) {
@@ -89,38 +90,14 @@ export class AttendanceListDayPage {
     let index = this.slider.getActiveIndex();
     const currentSlide = this.slides[index];
     this.selectedSegment = currentSlide.id;
-    if (this.selectedSegment == "all") {
-      this.isenabledref = true;
-      this.isenabledrefD = false;
-      this.isenabledrefM = false;
-      this.isenabledrefY = false;
-      this.isenabledinf = true;
-    } else if (this.selectedSegment == "today") {
-      this.isenabledref = false;
-      this.isenabledrefD = true;
-      this.isenabledrefM = false;
-      this.isenabledrefY = false;
-      this.isenabledinf = false;
-    } else if (this.selectedSegment == "month") {
-      this.isenabledref = false;
-      this.isenabledrefD = false;
-      this.isenabledrefM = true;
-      this.isenabledrefY = false;
-      this.isenabledinf = false;
-    } else if (this.selectedSegment == "year") {
-      this.isenabledref = false;
-      this.isenabledrefD = false;
-      this.isenabledrefM = false;
-      this.isenabledrefY = true;
-      this.isenabledinf = false;
-    }
+    this.segmentCheck();
   }
 
   doRefresh(refresher: Refresher) {
     this.today = null;
     this.todayM = null;
     this.todayY = null;
-    this.isenabledinf = false;
+    this.segmentCheck();
     this.deviceFeedback.acoustic();
     setTimeout(() => {
       this.refreshItem();
@@ -143,9 +120,9 @@ export class AttendanceListDayPage {
           this.start += 10;
           this.initialize();
           if (data.length == 0) {
-            this.isenabledinf = true;
-          } else {
             this.isenabledinf = false;
+          } else {
+            this.isenabledinf = true;
           }
         }
       },
@@ -226,6 +203,34 @@ export class AttendanceListDayPage {
         this.sendNotification(msg);
       }
     );
+  }
+
+  segmentCheck() {
+    if (this.selectedSegment == "all") {
+      this.isenabledref = true;
+      this.isenabledrefD = false;
+      this.isenabledrefM = false;
+      this.isenabledrefY = false;
+      this.isenabledinf = true;
+    } else if (this.selectedSegment == "today") {
+      this.isenabledref = false;
+      this.isenabledrefD = true;
+      this.isenabledrefM = false;
+      this.isenabledrefY = false;
+      this.isenabledinf = false;
+    } else if (this.selectedSegment == "month") {
+      this.isenabledref = false;
+      this.isenabledrefD = false;
+      this.isenabledrefM = true;
+      this.isenabledrefY = false;
+      this.isenabledinf = false;
+    } else if (this.selectedSegment == "year") {
+      this.isenabledref = false;
+      this.isenabledrefD = false;
+      this.isenabledrefM = false;
+      this.isenabledrefY = true;
+      this.isenabledinf = false;
+    }
   }
 
   initialize() {
@@ -317,6 +322,7 @@ export class AttendanceListDayPage {
                 moment(item.curdate).format("MMM DD YYYY").indexOf(val) > -1
               );
             });
+            this.isenabledinf = false;
           }
           this.checkItems();
           loadingPopup.dismiss();
