@@ -114,6 +114,9 @@ export class AttendanceListDayPage {
       data => {
         if (data) {
           this.posts = data;
+          for (let i = 0; i < this.posts.length; i++){
+            this.posts[i].timeago = moment(this.posts[i].curdate).fromNow();      
+          }
           for (let i = 0; i < this.posts.length; i++) {
             this.items.push(this.posts[i]);
           }
