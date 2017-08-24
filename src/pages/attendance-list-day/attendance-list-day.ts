@@ -240,12 +240,18 @@ export class AttendanceListDayPage {
 
   initializeItems() {
     this.items = this.posts;
+    for (let i = 0; i < this.items.length; i++){
+      this.items[i].timeago = moment(this.items[i].curdate).fromNow();      
+    }
     this.listItems();
     this.checkItems();
   }
 
   initializeItemsAll() {
     this.itemsAll = this.posts;
+    for (let i = 0; i < this.items.length; i++){
+      this.itemsAll[i].timeago = moment(this.itemsAll[i].curdate).fromNow();      
+    }
     this.checkItems();
   }
 

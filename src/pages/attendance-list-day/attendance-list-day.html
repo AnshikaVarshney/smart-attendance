@@ -65,7 +65,7 @@
       <div class="main-content">
         <ion-card *ngFor="let item of items">
           <ion-item style="background-color: rgba(0, 0, 0, 0.7);">
-            <h6 style="color: #f39c12;">PUNCHED </h6>
+            <h6><font style="color: #f39c12;">PUNCHED</font>&nbsp;&nbsp;<font style="color: gray;"><i>{{ item.timeago }}</i></font></h6>            
             <h6 style="color: aliceblue;"> on {{ item.curdate | date: 'EEE, MMM dd, y' }}</h6>
             <button ion-button item-right (click)="viewEntry({ record: item })">View Attendance</button>
           </ion-item>
@@ -81,7 +81,7 @@
       <div class="main-content">
         <ion-card *ngFor="let itemD of itemsD">
           <ion-item style="background-color: rgba(0, 0, 0, 0.7);">
-            <h6 style="color: #f39c12;">PUNCHED </h6>
+            <h6><font style="color: #f39c12;">PUNCHED</font>&nbsp;&nbsp;<font style="color: gray;"><i>{{ itemD.timeago }}</i></font></h6>            
             <h6 style="color: aliceblue;"> on {{ itemD.curdate | date: 'EEE, MMM dd, y' }}</h6>
             <button ion-button item-right (click)="viewEntry({ record: itemD })">View Attendance</button>
           </ion-item>
@@ -97,7 +97,7 @@
       <div class="main-content">
         <ion-card *ngFor="let itemM of itemsM">
           <ion-item style="background-color: rgba(0, 0, 0, 0.7);">
-            <h6 style="color: #f39c12;">PUNCHED </h6>
+            <h6><font style="color: #f39c12;">PUNCHED</font>&nbsp;&nbsp;<font style="color: gray;"><i>{{ itemM.timeago }}</i></font></h6>            
             <h6 style="color: aliceblue;"> on {{ itemM.curdate | date: 'EEE, MMM dd, y' }}</h6>
             <button ion-button item-right (click)="viewEntry({ record: itemM })">View Attendance</button>
           </ion-item>
@@ -113,7 +113,7 @@
       <div class="main-content">
         <ion-card *ngFor="let itemY of itemsY">
           <ion-item style="background-color: rgba(0, 0, 0, 0.7);">
-            <h6 style="color: #f39c12;">PUNCHED </h6>
+            <h6><font style="color: #f39c12;">PUNCHED</font>&nbsp;&nbsp;<font style="color: gray;"><i>{{ itemY.timeago }}</i></font></h6>            
             <h6 style="color: aliceblue;"> on {{ itemY.curdate | date: 'EEE, MMM dd, y' }}</h6>
             <button ion-button item-right (click)="viewEntry({ record: itemY })">View Attendance</button>
           </ion-item>

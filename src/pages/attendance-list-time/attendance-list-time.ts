@@ -92,6 +92,9 @@ export class AttendanceListTimePage {
 
   initializeItems() {
     this.items = this.posts;
+    for (let i = 0; i < this.items.length; i++){
+      this.items[i].timeago = moment(this.items[i].punch_time).fromNow();      
+    }
     this.listItems();
     this.checkItems();
   }

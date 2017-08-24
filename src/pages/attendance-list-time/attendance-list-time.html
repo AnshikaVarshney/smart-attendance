@@ -22,7 +22,7 @@
       <div class="main-content">
         <ion-card *ngFor="let itemIn of itemsIn">
           <ion-item style="background-color: rgba(0, 0, 0, 0.7);;">
-            <h6 style="color: #f39c12;">PUNCH {{ itemIn.punch_type.toUpperCase() }}</h6>
+            <h6><font style="color: #f39c12;">PUNCH {{ itemIn.punch_type.toUpperCase() }}</font>&nbsp;&nbsp;<font style="color: gray;"><i>{{ itemIn.timeago }}</i></font></h6>
             <h6 style="color: aliceblue;"> at {{ itemIn.punch_time | date: 'hh:mm:ss a' }}</h6>
             <button ion-button item-right (click)="viewEntry({ record: itemIn })">View</button>
             <button ion-button item-right (click)="viewMap({ record: itemIn })">Map</button>
@@ -39,7 +39,7 @@
       <div class="main-content">
         <ion-card *ngFor="let itemOut of itemsOut">
           <ion-item style="background-color: rgba(0, 0, 0, 0.7);;">
-            <h6 style="color: #f39c12;">PUNCH {{ itemOut.punch_type.toUpperCase() }}</h6>
+            <h6><font style="color: #f39c12;">PUNCH {{ itemOut.punch_type.toUpperCase() }}</font>&nbsp;&nbsp;<font style="color: gray;"><i>{{ itemOut.timeago }}</i></font></h6>
             <h6 style="color: aliceblue;"> at {{ itemOut.punch_time | date: 'hh:mm:ss a' }}</h6>
             <button ion-button item-right (click)="viewEntry({ record: itemOut })">View</button>
             <button ion-button item-right (click)="viewMap({ record: itemOut })">Map</button>
