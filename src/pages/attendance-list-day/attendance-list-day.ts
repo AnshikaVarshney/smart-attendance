@@ -115,7 +115,7 @@ export class AttendanceListDayPage {
         if (data) {
           this.posts = data;
           for (let i = 0; i < this.posts.length; i++){
-            this.posts[i].timeago = moment(this.posts[i].curdate).fromNow();      
+            this.posts[i].timeago = moment(this.posts[i].punch_time).fromNow();      
           }
           for (let i = 0; i < this.posts.length; i++) {
             this.items.push(this.posts[i]);
@@ -244,7 +244,7 @@ export class AttendanceListDayPage {
   initializeItems() {
     this.items = this.posts;
     for (let i = 0; i < this.items.length; i++){
-      this.items[i].timeago = moment(this.items[i].curdate).fromNow();      
+      this.items[i].timeago = moment(this.items[i].punch_time).fromNow();      
     }
     this.listItems();
     this.checkItems();
@@ -253,7 +253,7 @@ export class AttendanceListDayPage {
   initializeItemsAll() {
     this.itemsAll = this.posts;
     for (let i = 0; i < this.items.length; i++){
-      this.itemsAll[i].timeago = moment(this.itemsAll[i].curdate).fromNow();      
+      this.itemsAll[i].timeago = moment(this.itemsAll[i].punch_time).fromNow();      
     }
     this.checkItems();
   }
